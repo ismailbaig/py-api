@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
+import { SignupController } from './signup/signup.controller';
+import { UsersService } from './signup/signup.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './users/userSchema';
+import { User, UserSchema } from './signup/userSchema';
 import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orderts.service';
 import { Order, OrderSchema } from './orders/orderSchema';
@@ -16,8 +16,6 @@ import { PassportModule } from '@nestjs/passport';
 import { LoginService } from './login/login.service';
 import { LoginController } from './login/login.controller';
 import { JwtStrategy } from './auth/jwt.strategy';
-import { DashboardController } from './dashboard/dashboard.controller';
-import { DashboardService } from './dashboard/dashboard.service';
 
 @Module({
   imports: [
@@ -33,11 +31,10 @@ import { DashboardService } from './dashboard/dashboard.service';
   ],
   controllers: [
     AppController,
-    UsersController,
+    SignupController,
     OrdersController,
     ProductsController,
     LoginController,
-    DashboardController,
   ],
   providers: [
     JwtStrategy,
@@ -45,8 +42,7 @@ import { DashboardService } from './dashboard/dashboard.service';
     UsersService,
     OrdersService,
     ProductsService,
-    LoginService,
-    DashboardService
+    LoginService
   ],
 })
 export class AppModule {}
